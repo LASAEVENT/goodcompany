@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>good company. – Echte Begegnungen. Schöne Erlebnisse.</title>
+<meta name="description" content="good company. bringt Menschen in Basel bei besonderen Erlebnissen zusammen – ungezwungen, persönlich und ohne Dating-Druck.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..700,100&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ==== MARKENFARBEN & SCHRIFT: hier zentral anpassen ==== */
+:root{
+  --forest:#2F4A3A; --cream:#F6EFE3; --terracotta:#C8694A; --burgundy:#6E2A3A; --sand:#E2D3B5;
+  --ink:#2A2420; --muted:#6A5F55;
+  --head:"Fraunces","Georgia",serif;
+  --body:"DM Sans","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+h1,h2,h3{font-family:var(--head);font-variation-settings:"SOFT" 100;font-weight:600;line-height:1.1;margin:0 0 .5em;color:var(--forest)}
+h1{font-size:clamp(2.6rem,8vw,5.2rem)}
+h2{font-size:clamp(1.8rem,4.5vw,2.7rem)}
+h3{font-size:1.35rem}
+p{margin:0 0 1em;max-width:60ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--terracotta);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+section{padding:4.5rem 0}
+.muted{color:var(--muted)}
+
+/* Wortlogo: klein, weich, mit Punkt und Sonnen-Zeichen */
+.logo{font:600 1.45rem var(--head);font-variation-settings:"SOFT" 100;text-decoration:none;color:var(--forest);display:inline-flex;align-items:center;gap:.4rem}
+.logo i{color:var(--terracotta);font-style:normal}
+.sun{width:1.1em;height:1.1em;fill:var(--terracotta);flex:none}
+
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--cream) 93%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--sand)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:.8rem;padding-bottom:.8rem}
+nav a{margin-left:1.25rem;text-decoration:none;font-weight:500}
+nav a:hover{text-decoration:underline}
+@media(max-width:640px){nav a.opt{display:none}}
+
+.btn{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;background:var(--forest);color:var(--cream);font-weight:500;text-decoration:none;border:2px solid var(--forest);cursor:pointer;font:500 1rem var(--body)}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--forest)}
+.btn.terra{background:var(--terracotta);border-color:var(--terracotta);color:#fff}
+
+/* Hero */
+.hero{padding:4rem 0 5rem}
+.hero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;align-items:center}
+.hero .en{font:italic 500 1.15rem var(--head);color:var(--burgundy);margin-bottom:1.25rem}
+.hero .lead{font-size:1.2rem;color:var(--muted)}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
+/* BILD-PLATZHALTER: ersetze den div durch <img src="bilder/hero.jpg" alt="..."> mit class="photo" */
+.photo{aspect-ratio:4/5;border-radius:200px 200px 24px 24px;background:var(--sand);display:grid;place-items:center;color:var(--muted);font-size:.95rem;text-align:center;padding:1rem;overflow:hidden;object-fit:cover;width:100%}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.photo{aspect-ratio:4/3;border-radius:120px 120px 20px 20px;max-width:420px}}
+
+/* Versprechen */
+.promise{background:var(--sand)}
+.promise .cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+@media(max-width:760px){.promise .cols{grid-template-columns:1fr}}
+
+/* Editionen */
+.editions{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.ed{padding:2rem;border-radius:28px;display:flex;flex-direction:column}
+.ed h3,.ed .kicker{color:inherit}
+.ed.s{background:var(--terracotta);color:#fff}
+.ed.c{background:var(--forest);color:var(--cream)}
+.ed .kicker{font:italic 500 1rem var(--head);opacity:.9;margin-bottom:.4rem}
+.ed ul{padding-left:1.1rem;margin:0 0 1.5rem}
+.ed li{margin-bottom:.3rem}
+.ed .btn{margin-top:auto;align-self:flex-start;background:var(--cream);border-color:var(--cream);color:var(--ink)}
+@media(max-width:760px){.editions{grid-template-columns:1fr}}
+
+/* Ablauf */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem}
+.steps div{border-top:3px solid var(--terracotta);padding-top:1rem}
+@media(max-width:760px){.steps{grid-template-columns:1fr;gap:1.25rem}}
+
+/* Bildstreifen */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.strip .photo{aspect-ratio:1;border-radius:20px}
+.strip .photo:nth-child(2){border-radius:999px 999px 20px 20px}
+@media(max-width:640px){.strip{grid-template-columns:1fr 1fr}}
+
+/* Events */
+.events{margin-top:2rem;border-top:1px solid var(--sand)}
+.event{display:grid;grid-template-columns:7.5rem 1fr auto;gap:1rem;align-items:center;padding:1.25rem 0;border-bottom:1px solid var(--sand)}
+.event time{font:600 1.1rem var(--head)}
+.event h3{font-size:1.2rem;margin:0 0 .2rem}
+.tag{display:inline-block;font-size:.85rem;padding:.05rem .7rem;border-radius:999px;margin-right:.5rem;color:#fff}
+.tag.s{background:var(--terracotta)}
+.tag.c{background:var(--forest)}
+@media(max-width:640px){.event{grid-template-columns:1fr;gap:.4rem}}
+
+/* FAQ */
+details{border-bottom:1px solid var(--sand);padding:1rem 0}
+summary{cursor:pointer;font:600 1.15rem var(--head)}
+details p{margin:.75rem 0 0}
+
+/* Anmeldung */
+.signup{background:var(--burgundy);color:var(--cream)}
+.signup h2{color:var(--cream)}
+form{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.25rem}
+input[type=email]{flex:1 1 240px;padding:.85rem 1.2rem;border-radius:999px;border:2px solid transparent;font:inherit;background:var(--cream);color:var(--ink)}
+.signup .btn{background:var(--terracotta);border-color:var(--terracotta);color:#fff}
+.check{flex-basis:100%;font-size:.9rem;opacity:.9}
+
+footer{padding:2.5rem 0;font-size:.95rem;color:var(--muted)}
+footer .wrap{display:flex;gap:1rem 2rem;flex-wrap:wrap;justify-content:space-between}
+footer a{margin-right:1rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- Wiederverwendbares Sonnen-Zeichen (Begegnungspunkt). Kann später durch dein echtes Logo-Symbol ersetzt werden -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sun" viewBox="0 0 24 24"><path d="M12 0c.9 4.9 2 6.1 5.2 6.8L24 12l-6.8 5.2C14 18 12.900 19.100 12 24c-.9-4.900-2-6.100-5.200-6.800L0 12l6.800-5.200C10 6 11.100 4.900 12 0z"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">good company<i>.</i><svg class="sun" aria-hidden="true"><use href="#sun"/></svg></a>
+    <nav>
+      <a class="opt" href="#editionen">Editionen</a>
+      <a class="opt" href="#events">Events</a>
+      <a class="opt" href="#faq">FAQ</a>
+      <a href="#anmelden"><strong>Updates</strong></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Echte Begegnungen. Schöne Erlebnisse.</h1>
+      <p class="en">Meet people. Make memories. Find your people.</p>
+      <p class="lead">good company. bringt Menschen in Basel bei besonderen Erlebnissen zusammen: ungezwungen, persönlich und ohne Dating-Druck.</p>
+      <div class="actions">
+        <a class="btn terra" href="#events">Nächste Events</a>
+        <a class="btn ghost" href="#editionen">Zu den Editionen</a>
+      </div>
+    </div>
+    <div class="photo" role="img" aria-label="Platzhalter für Hero-Foto">Hero-Foto hier:<br>z. B. gemeinsames Lachen am gedeckten Tisch</div>
+  </div>
+</section>
+
+<!-- VERSPRECHEN -->
+<section class="promise">
+  <div class="wrap cols">
+    <div><h2>Kennenlernen darf wieder leicht sein.</h2></div>
+    <div>
+      <p>Neue Leute treffen klingt einfach, ist aber im Alltag oft schwer. Apps bieten viel Auswahl, aber selten echtes Gespräch.</p>
+      <p>Bei uns bewertest du keine Profile. Du erlebst einen Abend, an dem sich Gespräche von selbst ergeben: beim Spaziergang, am Tisch oder beim gemeinsamen Machen. Kleine bis mittelgrosse Gruppen, liebevoll ausgewählte Orte und Gastgeber, die sich um dich kümmern.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDITIONEN -->
+<section id="editionen">
+  <div class="wrap">
+    <h2>Zwei Erlebniswelten</h2>
+    <p class="muted">Such dir aus, wonach dir gerade ist. In beiden gilt: Nichts muss, vieles darf.</p>
+    <div class="editions">
+      <article class="ed s">
+        <p class="kicker">Edition 1</p>
+        <h3>Singles Edition</h3>
+        <p>Für Singles, die offen für neue Begegnungen sind. Freundschaft und Romantik dürfen entstehen.</p>
+        <ul><li>Rhine, Walk &amp; Wine</li><li>Dinner with Strangers</li><li>Wine, People &amp; Stories</li></ul>
+        <a class="btn" href="#events">Singles-Events</a>
+      </article>
+      <article class="ed c">
+        <p class="kicker">Edition 2</p>
+        <h3>Social Edition</h3>
+        <p>Für alle, die neue Menschen kennenlernen möchten: Singles, Paare und andere Offene.</p>
+        <ul><li>Sunday Social Club</li><li>Create &amp; Connect</li><li>City Adventures</li></ul>
+        <a class="btn" href="#events">Social-Events</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BILDSTREIFEN: echte Fotos von Events, wenn vorhanden -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="strip">
+      <div class="photo" role="img" aria-label="Platzhalter">Foto: Apéro</div>
+      <div class="photo" role="img" aria-label="Platzhalter">Foto: Spaziergang am Rhein</div>
+      <div class="photo" role="img" aria-label="Platzhalter">Foto: gedeckter Tisch</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="promise">
+  <div class="wrap">
+    <h2>So läuft ein Abend ab</h2>
+    <div class="steps">
+      <div><h3>1. Ticket buchen</h3><p>Such dir ein Erlebnis aus und sichere dir deinen Platz.</p></div>
+      <div><h3>2. Ankommen</h3><p>Wir begrüssen dich, stellen dich vor und sorgen für einen leichten Einstieg.</p></div>
+      <div><h3>3. Zusammen erleben</h3><p>Du isst, gehst, gestaltest oder entdeckst etwas mit anderen. Was danach entsteht, entscheidet ihr.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS: Beispiele ersetzen -->
+<section id="events">
+  <div class="wrap">
+    <h2>Nächste Events</h2>
+    <p class="muted">Beispieleinträge. Ersetze sie durch deine Termine und verlinke auf deinen Ticketshop.</p>
+    <div class="events">
+      <div class="event">
+        <time>Sa, 14. Mär</time>
+        <div><h3>Rhine, Walk &amp; Wine</h3><span class="tag s">Singles</span><span class="muted">Basel, Treffpunkt folgt</span></div>
+        <a class="btn" href="#">Tickets</a>
+      </div>
+      <div class="event">
+        <time>So, 22. Mär</time>
+        <div><h3>Sunday Social Club</h3><span class="tag c">Social</span><span class="muted">Basel, Ort folgt</span></div>
+        <a class="btn" href="#">Tickets</a>
+      </div>
+      <div class="event">
+        <time>Fr, 10. Apr</time>
+        <div><h3>Dinner with Strangers</h3><span class="tag s">Singles</span><span class="muted">Basel, Ort folgt</span></div>
+        <a class="btn" href="#">Tickets</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER -->
+<section class="promise">
+  <div class="wrap cols">
+    <div><h2>Für Basler Gastgeber und Firmen</h2></div>
+    <div>
+      <p>Du führst ein Restaurant, eine Bar, ein Kultur- oder Freizeitangebot in Basel? Wir bringen neue Gäste zu dir und gestalten gemeinsam ein Erlebnis, das zu deinem Haus passt.</p>
+      <p>Für Teams entwickeln wir exklusive Formate und Firmenveranstaltungen.</p>
+      <a class="btn" href="mailto:hallo@deine-domain.ch?subject=Kooperation">Kooperation anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <h2>Häufige Fragen</h2>
+    <details><summary>Muss ich allein kommen?</summary><p>Nein, aber du kannst. Die meisten kommen allein. Bei der Social Edition darfst du auch gern Freundin, Freund oder Partner mitbringen.</p></details>
+    <details><summary>Ist das ein Dating-Event?</summary><p>Bei der Singles Edition darf Romantik entstehen, muss aber nicht. Die Social Edition ist unabhängig vom Beziehungsstatus.</p></details>
+    <details><summary>Für welches Alter sind die Events?</summary><p>Ergänze hier deine Altersgruppe oder schreibe, dass die Events altersgemischt sind.</p></details>
+    <details><summary>Was passiert, wenn ich nicht kann?</summary><p>Beschreibe hier Umbuchung und Storno.</p></details>
+  </div>
+</section>
+
+<!-- ANMELDUNG -->
+<section class="signup" id="anmelden">
+  <div class="wrap">
+    <h2>Find your people.</h2>
+    <p>Trag dich ein und erfahre als Erste:r von neuen Events in Basel. Ein paar Mails pro Jahr, nur zu Terminen und Neuigkeiten.</p>
+    <!-- action durch deinen Formular-Dienst ersetzen (Formspree, Brevo, MailerLite …) -->
+    <form action="https://example.com/DEIN-FORMULAR-ENDPUNKT" method="post">
+      <label for="mail" style="position:absolute;left:-9999px">E-Mail-Adresse</label>
+      <input id="mail" type="email" name="email" placeholder="deine@email.ch" required>
+      <button class="btn" type="submit">Anmelden</button>
+      <label class="check"><input type="checkbox" required> Ich bin mit der <a href="#datenschutz">Datenschutzerklärung</a> einverstanden.</label>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>good company.</strong><br>Basel, Schweiz</div>
+    <div>
+      <a href="mailto:hallo@deine-domain.ch">hallo@deine-domain.ch</a>
+      <a href="https://instagram.com/DEIN-ACCOUNT">Instagram</a>
+      <a href="#impressum">Impressum</a>
+      <a href="#datenschutz">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
